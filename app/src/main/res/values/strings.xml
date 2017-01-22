@@ -2,5 +2,6 @@
     <string name="app_name">Shopping List Sender</string>
     <string name="choose_item_form_title">Choose an Item</string>
     <string name="shopping_item_hint">Bananas</string>
-    <string name="choose_item_button">Button</string>
+    <string name="choose_item_button">Add Item</string>
+    <string name="send_email_button">Send email</string>
 </resources>

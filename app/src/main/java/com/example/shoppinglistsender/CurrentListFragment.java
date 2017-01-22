@@ -73,12 +73,26 @@ public class CurrentListFragment extends ListFragment {
         Set<String> set = new HashSet<String>();
         set.addAll(listItems);
         editor.putStringSet("current_shopping_items", set);
-        editor.commit();
+        editor.apply();
     }
 
     public void addItemToList(String item) {
         listItems.add(item);
         adapter.notifyDataSetChanged();
+    }
+
+    public void removeAllItems() {
+        listItems.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    public String returnListAsString() {
+        String list_as_string = "";
+        for (int i=0; i < listItems.size(); i++) {
+            String list_value = listItems.get(i);
+            list_as_string = list_as_string + "- " + list_value + "\n";
+        }
+        return list_as_string;
     }
 
 
