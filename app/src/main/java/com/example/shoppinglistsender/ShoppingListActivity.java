@@ -29,7 +29,7 @@ public class ShoppingListActivity extends FragmentActivity implements ChooseItem
                 emailIntent.setData(Uri.parse("mailto:"));
                 emailIntent.setType("text/plain");
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lista");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, listFragment.returnListAsString());
+                emailIntent.putExtra(Intent.EXTRA_TEXT, listFragment.returnSelectedItems());
                 startActivity(emailIntent);
             }
         });

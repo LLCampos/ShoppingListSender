@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,16 +51,18 @@ public class CurrentListFragment extends ListFragment {
 
         Activity activity = getActivity();
         ListView listView = (ListView) activity.findViewById(android.R.id.list);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, listItems);
+                android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, listItems);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 listItems.remove(position);
                 adapter.notifyDataSetChanged();
+                return true;
             }
         });
     }
@@ -81,18 +84,17 @@ public class CurrentListFragment extends ListFragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void removeAllItems() {
-        listItems.clear();
-        adapter.notifyDataSetChanged();
-    }
+    public String returnSelectedItems() {
+        String selectedItems = "";
+        int numberSelectedItems = getListView().getCount();
+        SparseBooleanArray sparseBooleanArray = getListView().getCheckedItemPositions();
 
-    public String returnListAsString() {
-        String list_as_string = "";
-        for (int i=0; i < listItems.size(); i++) {
-            String list_value = listItems.get(i);
-            list_as_string = list_as_string + "- " + list_value + "\n";
+        for (int i = 0; i < numberSelectedItems; i++) {
+            if (sparseBooleanArray.get(i)) {
+                selectedItems = selectedItems + "- " + listItems.get(i) + "\n";
+            }
         }
-        return list_as_string;
+        return selectedItems;
     }
 
 
