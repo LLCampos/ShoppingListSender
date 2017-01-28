@@ -4,4 +4,5 @@
     <string name="shopping_item_hint">Bananas</string>
     <string name="choose_item_button">Add Item</string>
     <string name="send_email_button">Send email</string>
+    <string name="send_sms_button">Send SMS</string>
 </resources>

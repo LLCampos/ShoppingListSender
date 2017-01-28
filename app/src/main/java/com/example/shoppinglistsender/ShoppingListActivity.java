@@ -20,8 +20,8 @@ public class ShoppingListActivity extends FragmentActivity implements ChooseItem
 
         listFragment = (CurrentListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.list_fragment);
-        sendListButton = (Button) findViewById(R.id.buttonSendEmail);
 
+        sendListButton = (Button) findViewById(R.id.buttonSendEmail);
         sendListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,6 +31,16 @@ public class ShoppingListActivity extends FragmentActivity implements ChooseItem
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lista");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, listFragment.returnSelectedItems());
                 startActivity(emailIntent);
+            }
+        });
+
+        sendListButton = (Button) findViewById(R.id.buttonSendSMS);
+        sendListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"));
+                smsIntent.putExtra("sms_body", listFragment.returnSelectedItems());
+                startActivity(smsIntent);
             }
         });
 

@@ -23,11 +23,24 @@
         tools:layout="@layout/shopping_list"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:text="@string/send_email_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSendEmail" />
+        android:layout_height="wrap_content">
+        <Button
+            android:text="@string/send_email_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/buttonSendEmail"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:text="@string/send_sms_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/buttonSendSMS"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+
 
 
 </LinearLayout>
